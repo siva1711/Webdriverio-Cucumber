@@ -14,6 +14,8 @@ When(/^get the title$/, function () {
     assert.equal(title, 'WebdriverIO · Next-gen WebDriver test framework for Node.js');
 });
 
-Then(/^title should be matched$/, function () {
+Then(/^title should be matched$/, async function () {
 
+    let result = await connection.execute('select * from demo');
+    console.log(result.rows());
 });

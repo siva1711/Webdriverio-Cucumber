@@ -1,4 +1,5 @@
 var browserConfig = require('./test/utils/browser');
+const databaseConfig = require('./test/utils/database.config');
 
 require('babel-register')({
     presets: ['env']
@@ -80,7 +81,14 @@ var config = {
             width: 1280,
             height: 578
         })
+    },
+    beforeFeature: async function (feature) {
+        await databaseConfig.getDBConnection();
+    },
+    after: async function () {
+        await databaseConfig.closeConnection(connection);
     }
+
 
 };
 
